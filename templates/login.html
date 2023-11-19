@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #161623;
+        }
+        body::before{
+            content: '';
+            position: absolute;
+            top : 0;
+            left : 0;
+            width: 100%;
+            height : 100%;
+            background: linear-gradient(#f00,#f0f);
+            clip-path: circle(40% at right 80%);
+        }
+        body::after{
+            content: ' ';
+            position: absolute;
+            top : 0;
+            left : 0;
+            width: 100%;
+            height : 100%;
+            background: linear-gradient(#2196f3,#e91e63);
+            clip-path: circle(20% at 10% 80%);
+        }
+
+        form {
+            margin-top: 200px;
+            padding : 50px;
+            border: 3px solid #f1f1f1;
+            border-radius: 30px;
+        }
+        .container{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            flex-wrap: wrap;
+            z-index: 1;
+            padding-left: 100px;
+        }
+        input[type=text]{
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+          border-radius: 20px;
+        }
+        input[type=password]{
+             width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box; 
+            border-radius: 20px;
+        }
+        
+        button {
+          background-color:#0C3E9C ;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 50%;
+          border-radius: 20px;
+        }
+        
+        button:hover {
+          opacity: 0.8;
+        }
+        
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+          border-radius: 20px;
+        }
+        .cancelbtnlink{
+            text-decoration: none;
+            color: white;
+        }
+        h3{ 
+            padding-right: 10px;
+            color: dodgerblue;
+        }
+        span.psw {
+          float: right;
+          padding-top: 20px;
+          color: antiquewhite;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+             display: block;
+             float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+        </style>
+        <script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form class="form" method="post" action="/login">
+        <div class="container">
+            <form class = "form" method="post">
+                <div class="login-detail" >
+                    <h3> User Name</h3>
+                    <input type="text" placeholder="Enter Login ID" name="uname" id = "username" required>
+    
+                    <h3> Password </h3>
+                    <input type="password" placeholder="Enter Password" name="psw" id = "password" required>
+                    <center>
+                        <button type="submit" class="Login">Login</button>
+                    </center>
+                    <label>
+                    <input type="checkbox" checked="checked" name="remember" > Remember Me!
+                </div>
+                <div class="cancel-btn">
+                    <button type="button" class="cancelbtn"><a class="cancelbtnlink" href="/">Cancel</a></button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
+        </div>
+        
+    </form>
+</body>
+</html>
